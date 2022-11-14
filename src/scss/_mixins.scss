@@ -1,0 +1,32 @@
+@import './_colors.scss';
+
+@mixin safe-transparentize($property, $amount, $color, $fallback) {
+    @if variable-exists($color) {
+        #{$property}: transparentize($color: $color, $amount: $amount);
+    }
+
+    @else {
+        #{$property}: transparentize($color: $fallback, $amount: $amount);
+    }
+}
+
+@mixin theme-colors-filled {
+    color: var(--re-use-color-light, $re-use-color-light);
+    background-color: var(--re-use-color-primary, $re-use-color-primary);
+
+    &.disabled {
+        color: var(--re-use-color-disabled-secondary, $re-use-color-disabled-secondary);
+        background-color: var(--re-use-color-disabled-primary, $re-use-color-disabled-primary);
+    }
+}
+
+@mixin theme-colors-outlined {
+    color: var(--re-use-color-primary, $re-use-color-primary);
+    border: 1px solid var(--gray-400, $gray-400);
+    background-color: transparent;
+
+    &.disabled {
+        color: var(--re-use-color-disabled-secondary, $re-use-color-disabled-secondary);
+        border: 1px solid var(--re-use-color-disabled-secondary, $re-use-color-disabled-secondary);
+    }
+}

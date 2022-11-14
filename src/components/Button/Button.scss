@@ -1,0 +1,52 @@
+@import '../../scss/_mixins.scss';
+@import '../../scss/_colors.scss';
+
+.re-use-button {
+    width: auto;
+    display: flex;
+    cursor: pointer;
+    padding: 0px 20px;
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+
+    &.disabled {
+        cursor: not-allowed;
+
+        &.filled:hover {
+            box-shadow: none;
+        }
+
+        &.outlined:hover {
+            background: none;
+        }
+    }
+
+    &.filled {
+        @include theme-colors-filled;
+
+        &:hover {
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+        }
+
+        &:active {
+            box-shadow: none;
+        }
+    }
+
+
+    &.outlined {
+        @include theme-colors-outlined;
+
+        &:hover {
+            @include safe-transparentize('background', 0.95, --re-use-color-primary, $re-use-color-primary);
+        }
+
+        &:active {
+            @include safe-transparentize('background', 0.90, --re-use-color-primary, $re-use-color-primary);
+
+            border-color: var(--re-use-color-primary, $re-use-color-primary);
+        }
+    }
+}
